@@ -20,21 +20,27 @@ public class Game {
     @Column(name = "game_year") //Essa anotation vai configurar o nome da coluna no banco de dados, caso não seja configurada, o JPA vai usar o nome do atributo como nome da coluna
     private Integer year;
     private String genre;
-    private String platform;
+    private String platforms;
+    private Double score;
     private String imgUrl;
+
+    @Column(columnDefinition="TEXT") //Essa anotation vai configurar o tipo da coluna no banco de dados, nesse caso, o JPA vai usar o tipo TEXT para a coluna shortDescription, isso é importante para que o JPA saiba que esse atributo pode ter um tamanho maior que o padrão
     private String shortDescription;
+
+    @Column(columnDefinition="TEXT") //Essa anotation vai configurar o tipo da coluna no banco de dados, nesse caso, o JPA vai usar o tipo TEXT para a coluna longDescription, isso é importante para que o JPA saiba que esse atributo pode ter um tamanho maior que o padrão
     private String longDescription;
 
     //Construtor
     public Game() {
     }
-    public Game(Long id, String title, Integer year, String genre, String platform, String imgUrl,
+    public Game(Long id, String title, Integer year, String genre, String platform, Double score, String imgUrl,
             String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
-        this.platform = platform;
+        this.platforms = platforms;
+        this.score = score;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
@@ -73,12 +79,20 @@ public class Game {
         this.genre = genre;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPlatforms() {
+        return platforms;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+    
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getImgUrl() {
@@ -129,8 +143,7 @@ public class Game {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-    
+    }    
 
     
 }
